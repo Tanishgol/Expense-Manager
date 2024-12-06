@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Categories</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: rgb(231, 231, 231);
+        }
+
+        .card-title {
+            font-weight: bold;
+        }
+
+        .category-icon {
+            font-size: 50px;
+            color: #0d6efd;
+        }
+
+        .card-text {
+            margin-bottom: 1rem;
+        }
+
+        .card ul {
+            text-align: left;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="Navbar">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="./Images/main-icon.png" alt="Image of Icon" width="35px" height="auto">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./Budget.html">budget</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./Income.html">Income</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="./Category.html">Category Info</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./AboutDev.html">About Dev</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <div class="input-group">
+                            <span class="input-group-text" id="search-icon">
+                                <i class="fas fa-search"></i>
+                            </span>
+                            <input type="text" class="form-control" placeholder="Search..." aria-label="Search">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <div class="container my-4">
+        <h1 class="text-center mb-4">Expense Categories</h1>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <!-- Utilities -->
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="category-icon mb-3" style="color: #FF6B6B;">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h5 class="card-title">Utilities</h5>
+                        <p class="card-text">Expenses related to utilities.</p>
+                        <ul>
+                            <li><i class="fas fa-check text-success me-2"></i>Electricity bills</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Water charges</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Heating expenses</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Internet and phone bills</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Transportation -->
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="category-icon mb-3" style="color: #4ECDC4;">
+                            <i class="fas fa-bus"></i>
+                        </div>
+                        <h5 class="card-title">Transportation</h5>
+                        <p class="card-text">Expenses related to transportation.</p>
+                        <ul>
+                            <li><i class="fas fa-check text-success me-2"></i>Fuel costs</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Public transport fares</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Vehicle maintenance</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Parking fees</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Entertainment -->
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="category-icon mb-3" style="color: #45B7D1;">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <h5 class="card-title">Entertainment</h5>
+                        <p class="card-text">Expenses related to entertainment.</p>
+                        <ul>
+                            <li><i class="fas fa-check text-success me-2"></i>Movie tickets</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Concert admissions</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Streaming subscriptions</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Hobby-related expenses</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Healthcare -->
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="category-icon mb-3" style="color: #FF8C42;">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h5 class="card-title">Healthcare</h5>
+                        <p class="card-text">Expenses related to healthcare.</p>
+                        <ul>
+                            <li><i class="fas fa-check text-success me-2"></i>Doctor visits</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Prescription medications</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Health insurance premiums</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Dental care expenses</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Shopping -->
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="category-icon mb-3" style="color: #98C1D9;">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h5 class="card-title">Shopping</h5>
+                        <p class="card-text">Expenses related to shopping.</p>
+                        <ul>
+                            <li><i class="fas fa-check text-success me-2"></i>Clothing and accessories</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Electronics and gadgets</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Home decor items</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Personal care products</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Rent -->
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="category-icon mb-3" style="color: #6B5B95;">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h5 class="card-title">Rent</h5>
+                        <p class="card-text">Expenses related to rent.</p>
+                        <ul>
+                            <li><i class="fas fa-check text-success me-2"></i>Monthly rent payments</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Security deposits</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Rental insurance</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Maintenance fees</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Food -->
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="category-icon mb-3" style="color: #F7B801;">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h5 class="card-title">Food</h5>
+                        <p class="card-text">Expenses related to food.</p>
+                        <ul>
+                            <li><i class="fas fa-check text-success me-2"></i>Grocery shopping</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Restaurant meals</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Food delivery services</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Snacks and beverages</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Education -->
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="category-icon mb-3" style="color: #1A936F;">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h5 class="card-title">Education</h5>
+                        <p class="card-text">Expenses related to education.</p>
+                        <ul>
+                            <li><i class="fas fa-check text-success me-2"></i>Tuition fees</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Textbooks and supplies</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Online courses</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Educational software</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Gifts -->
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="category-icon mb-3" style="color: #FF6B6B;">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h5 class="card-title">Gifts</h5>
+                        <p class="card-text">Expenses related to gifts.</p>
+                        <ul>
+                            <li><i class="fas fa-check text-success me-2"></i>Birthday presents</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Holiday gifts</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Wedding and anniversary gifts</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Charitable donations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Savings -->
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="category-icon mb-3" style="color: #4ECDC4;">
+                            <i class="fas fa-piggy-bank"></i>
+                        </div>
+                        <h5 class="card-title">Savings</h5>
+                        <p class="card-text">Expenses related to savings.</p>
+                        <ul>
+                            <li><i class="fas fa-check text-success me-2"></i>Emergency fund contributions</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Retirement account deposits</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Investment contributions</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Savings for specific goals</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Other -->
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="category-icon mb-3" style="color: #45B7D1;">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </div>
+                        <h5 class="card-title">Other</h5>
+                        <p class="card-text">Miscellaneous expenses that don't fit into the above categories.</p>
+                        <ul>
+                            <li><i class="fas fa-check text-success me-2"></i>Pet expenses</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Legal fees</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Membership dues</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Unexpected one-time costs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"
+        integrity="sha384-rOA1PnstxnOBLzCLw6/A4F06A8YuoCb/jC6ptEbxZW/tfW9rPpFiHb/FlZ8ANNFJ"
+        crossorigin="anonymous"></script>
+</body>
+
+</html> 
