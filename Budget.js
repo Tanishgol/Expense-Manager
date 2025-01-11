@@ -40,7 +40,7 @@ function updateBudgetDisplay() {
                                 <i class="category-icon fas fa-${category.icon}"></i>
                                 ${category.title}
                             </h5>
-                            <h6 class="card-subtitle mb-2 text-body-secondary">Current Budget: $${budget.toFixed(2)}</h6>
+                            <h6 class="card-subtitle mb-2 text-body-secondary">Current Budget: ₹${budget.toFixed(2)}</h6>
                             <p class="card-text">Spent: ₹${spent.toFixed(2)} | Remaining: ₹${remaining.toFixed(2)}</p>
                             <div class="progress mb-3">
                                 <div class="progress-bar ${getProgressBarColor(percentage)}" role="progressbar" 
@@ -61,9 +61,9 @@ function updateBudgetDisplay() {
     });
 
     // Update total budget overview
-    document.getElementById('totalBudget').textContent = `$${totalBudget.toFixed(2)}`;
-    document.getElementById('totalSpent').textContent = `$${totalSpent.toFixed(2)}`;
-    document.getElementById('remaining').textContent = `$${(totalBudget - totalSpent).toFixed(2)}`;
+    document.getElementById('totalBudget').textContent = `₹${totalBudget.toFixed(2)}`;
+    document.getElementById('totalSpent').textContent = `₹${totalSpent.toFixed(2)}`;
+    document.getElementById('remaining').textContent = `₹${(totalBudget - totalSpent).toFixed(2)}`;
 
     const totalPercentage = totalBudget > 0 ? (totalSpent / totalBudget) * 100 : 0;
     const totalProgressBar = document.querySelector('.progress-bar');
