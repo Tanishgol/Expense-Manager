@@ -1,51 +1,94 @@
+// Initialize existing expenses
 let expenses = JSON.parse(localStorage.getItem('expenses')) || [];
 let budgets = JSON.parse(localStorage.getItem('budgets')) || {};
 const expenseForm = document.getElementById('expenseForm');
 const expenseList = document.getElementById('expenseList');
 const ctx = document.getElementById('expenseChart').getContext('2d');
+const searchInput = document.querySelector('.topbar input[type="search"]');
+const filterCategory = document.getElementById('filtercategory');
+const minAmount = document.getElementById('minAmount');
+const maxAmount = document.getElementById('maxAmount');
+const filterAmountBtn = document.getElementById('filterAmountBtn');
+const startDate = document.getElementById('startDate');
+const endDate = document.getElementById('endDate');
+const filterDateBtn = document.getElementById('filterDateBtn');
+
 let expenseChart;
 
-function updateExpenseList() {
+// Update the expense list
+function updateExpenseList(filteredExpenses = expenses) {
     expenseList.innerHTML = '';
-    expenses.forEach((expense, index) => {
+    filteredExpenses.forEach((expense, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-    <td>${expense.description}</td>
-    <td>₹${expense.amount.toFixed(2)}</td>
-    <td>${expense.category}</td>
-    <td>${new Date(expense.date).toLocaleDateString('en-GB')}</td>
-    <td>
-        <button class="btn btn-sm btn-outline-primary" onclick="editExpense(${index})">
-            <i class="fas fa-edit"></i>
-        </button>
-        <button class="btn btn-sm btn-outline-danger" onclick="deleteExpense(${index})">
-            <i class="fas fa-trash"></i>
-        </button>
-    </td>
-`;
+            <td>${expense.description}</td>
+            <td>₹${expense.amount.toFixed(2)}</td>
+            <td>${expense.category}</td>
+            <td>${new Date(expense.date).toLocaleDateString('en-GB')}</td>
+            <td>
+                <button class="btn btn-sm btn-outline-primary" onclick="editExpense(${index})">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-danger" onclick="deleteExpense(${index})">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+        `;
         expenseList.appendChild(row);
     });
 }
 
-function deleteExpense(index) {
-    expenses.splice(index, 1);
-    saveExpenses();
-    updateExpenseList();
-    updateChart();
+// Search functionality
+searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase();
+    const filteredExpenses = expenses.filter(expense =>
+        expense.description.toLowerCase().includes(query)
+    );
+    updateExpenseList(filteredExpenses);
+});
+
+// Category filter
+filterCategory.addEventListener('change', () => {
+    const selectedCategory = filterCategory.value;
+    const filteredExpenses = selectedCategory
+        ? expenses.filter(expense => expense.category === selectedCategory)
+        : expenses;
+    updateExpenseList(filteredExpenses);
+});
+
+// Amount filter
+filterAmountBtn.addEventListener('click', () => {
+    const min = parseFloat(minAmount.value) || 0;
+    const max = parseFloat(maxAmount.value) || Infinity;
+    const filteredExpenses = expenses.filter(
+        expense => expense.amount >= min && expense.amount <= max
+    );
+    updateExpenseList(filteredExpenses);
+});
+
+// Date range filter
+filterDateBtn.addEventListener('click', () => {
+    const start = new Date(startDate.value);
+    const end = new Date(endDate.value);
+
+    if (!start || !end) {
+        alert("Please select valid start and end dates.");
+        return;
+    }
+
+    const filteredExpenses = expenses.filter(expense => {
+        const expenseDate = new Date(expense.date);
+        return expenseDate >= start && expenseDate <= end;
+    });
+    updateExpenseList(filteredExpenses);
+});
+
+// Save and update chart
+function saveExpenses() {
+    localStorage.setItem('expenses', JSON.stringify(expenses));
 }
 
-function editExpense(index) {
-    const expense = expenses[index];
-    document.getElementById('description').value = expense.description;
-    document.getElementById('amount').value = expense.amount;
-    document.getElementById('category').value = expense.category;
-
-    expenses.splice(index, 1);
-    saveExpenses();
-    updateExpenseList();
-    updateChart();
-}
-
+// Update chart
 function updateChart() {
     const data = expenses.reduce((acc, expense) => {
         acc[expense.category] = (acc[expense.category] || 0) + expense.amount;
@@ -82,60 +125,6 @@ function updateChart() {
     });
 }
 
-function saveExpenses() {
-    localStorage.setItem('expenses', JSON.stringify(expenses));
-}
-
-function getTotalExpensesForCategory(category) {
-    return expenses
-        .filter(expense => expense.category === category)
-        .reduce((total, expense) => total + expense.amount, 0);
-}
-
-expenseForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const description = document.getElementById('description').value;
-    const amount = parseFloat(document.getElementById('amount').value);
-    const category = document.getElementById('category').value;
-
-    const budget = budgets[category] || 0;
-    const currentExpenses = getTotalExpensesForCategory(category);
-
-    if (currentExpenses + amount > budget) {
-        alert(`Adding this expense would exceed the budget for ${category}. Current expenses: ₹${currentExpenses.toFixed(2)}, Budget: ₹${budget.toFixed(2)}`);
-        return;
-    }
-
-    const totalBudget = Object.values(budgets).reduce((sum, b) => sum + b, 0);
-    const totalExpenses = expenses.reduce((sum, exp) => sum + exp.amount, 0);
-    const budgetLimit = parseFloat(localStorage.getItem('budgetLimit')) || 0;
-
-    if (totalExpenses + amount > budgetLimit) {
-        alert(`Adding this expense would exceed the total budget limit of ₹${budgetLimit.toFixed(2)}. Please adjust your expenses or increase your income.`);
-        return;
-    }
-
-    expenses.unshift({ description, amount, category, date: new Date().toISOString() });
-    saveExpenses();
-    updateExpenseList();
-    updateChart();
-    expenseForm.reset();
-});
-
-updateExpenseList();
-updateChart();
-
-window.addEventListener('storage', function (e) {
-    if (e.key === 'budgets') {
-        budgets = JSON.parse(e.newValue);
-    }
-});
-
-window.addEventListener('resize', function () {
-    if (expenseChart) {
-        expenseChart.resize();
-    }
-});
-
+// Initialize
 updateExpenseList();
 updateChart();
