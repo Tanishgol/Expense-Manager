@@ -6,10 +6,8 @@ const ctx = document.getElementById('expenseChart').getContext('2d');
 const filterCategory = document.getElementById('filtercategory');
 const minAmountInput = document.getElementById('minAmount');
 const maxAmountInput = document.getElementById('maxAmount');
-const filterAmountBtn = document.getElementById('filterAmountBtn');
 const startDateInput = document.getElementById('startDate');
 const endDateInput = document.getElementById('endDate');
-const filterDateBtn = document.getElementById('filterDateBtn');
 let expenseChart;
 
 function updateExpenseList(filteredExpenses = expenses) {
@@ -147,9 +145,12 @@ expenseForm.addEventListener('submit', (e) => {
     expenseForm.reset();
 });
 
-filterCategory.addEventListener('change', filterExpenses);
-filterAmountBtn.addEventListener('click', filterExpenses);
-filterDateBtn.addEventListener('click', filterExpenses);
+// Dynamic filtering
+filterCategory.addEventListener('input', filterExpenses);
+minAmountInput.addEventListener('input', filterExpenses);
+maxAmountInput.addEventListener('input', filterExpenses);
+startDateInput.addEventListener('input', filterExpenses);
+endDateInput.addEventListener('input', filterExpenses);
 
 updateExpenseList();
 updateChart();
