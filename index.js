@@ -145,7 +145,6 @@ expenseForm.addEventListener('submit', (e) => {
     expenseForm.reset();
 });
 
-// Dynamic filtering
 filterCategory.addEventListener('input', filterExpenses);
 minAmountInput.addEventListener('input', filterExpenses);
 maxAmountInput.addEventListener('input', filterExpenses);
